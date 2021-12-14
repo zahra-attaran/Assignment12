@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="container-set">
+
+    <div class="calculator">
+        <div class="">
+            <input class="input2" id="display2" type="text" disabled>
+            <input class="input" id="display" type="text" disabled>
+        </div>
+        <div class="calc">
+            <div class="c">
+                <button onclick="operationFunc(event)" class="btncalc " id="opD">/</button>
+            </div>
+            <div class="c">
+                <button class="btncalc " id="opDa">%</button>
+            </div>
+            <div class="c">
+                <button class="btncalc ">+/-</button>
+            </div>
+            <div class="c">
+                <button class="btncalc " id="AC">AC</button>
+            </div>
+            <div class="c">
+                <button onclick="operationFunc(event)" class="btncalc op" id="opz">*</button>
+            </div>
+            <div class="c">
+                <button onclick="getNumber(event)" class="btncalc number" id="N9">9</button>
+            </div>
+            <div class="c">
+                <button onclick="getNumber(event)" class="btncalc number" id="N8">8</button>
+            </div>
+            <div class="c">
+                <button onclick="getNumber(event)" class="btncalc number" id="N7">7</button>
+            </div>
+            <div class="c">
+                <button onclick="operationFunc(event)" class="btncalc op" id="opm">-</button>
+            </div>
+            <div class="c">
+                <button onclick="getNumber(event)" class="btncalc number" id="N6">6</button>
+            </div>
+            <div class="c">
+                <button onclick="getNumber(event)" class="btncalc number" id="N5">5</button>
+            </div>
+            <div class="c">
+                <button onclick="getNumber(event)" class="btncalc number" id="N4">4</button>
+            </div>
+            <div class="c">
+                <button onclick="operationFunc(event)" class="btncalc op" id="ops">+</button>
+            </div>
+            <div class="c">
+                <button onclick="getNumber(event)" class="btncalc number" id="N3">3</button>
+            </div>
+            <div class="c">
+                <button onclick="getNumber(event)" class="btncalc number" id="N2">2</button>
+            </div>
+            <div class="c">
+                <button onclick="getNumber(event)" class="btncalc number" id="N1">1</button>
+            </div>
+            <div class="c">
+                <button onclick="equal(event)" class="btncalc op" id="eq">=</button>
+            </div>
+
+            <div class="c">
+                <button class="btncalc ">.</button>
+            </div>
+            <div class="c c0">
+                <button onclick="getNumber(event)" class="btncalc number number0" id="N0">0</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script>
+    var display = document.getElementById("display");
+    var display2 = document.getElementById("display2");
+    var AC = document.getElementById("AC");
+    var operation;
+    var a = "", b = "", c = null,txt=""
+
+    AC.onclick=function (){
+        display.value="";
+        display2.value="";
+        a="",b="",c=null,txt=""
+
+    }
+    function getNumber(x) {
+        var target = x.target || x.srcElement;
+
+        if (c == null) {
+            a = a + target.innerHTML;
+            console.log(a);
+            txt=a;
+            display2.value=txt;
+        } else {
+            b = b + target.innerHTML;
+            console.log(b);
+            txt=a+c+b
+            display2.value=txt;
+        }
+    }
+    function operationFunc(o) {
+        operation = o.target || o.srcElement;
+        c = operation.innerHTML;
+        console.log(c);
+        txt=txt+c;
+        display2.value=txt;
+        if(a !== "" && b !=="" ){
+            switch (c) {
+                case  "+":
+                    a= parseInt(a) + parseInt(b);
+                    b="";
+                    break;
+                case  "-":
+                    a = parseInt(a) - parseInt(b);
+                     b="";
+                    break;
+                case  "/":
+                    a = parseInt(a) / parseInt(b);
+                     b="";
+                    break;
+                case "*":
+                    a= parseInt(a) * parseInt(b);
+                     b="";
+                    break;
+                case "%":
+                   a= parseInt(a) % parseInt(b);
+                     b="";
+                    break;
+            }
+            display.value=a;
+        }
+    }
+    function equal() {
+        // operation = o.target || o.srcElement;
+        switch (c) {
+            case  "+":
+                a= parseInt(a) + parseInt(b);
+                b="";
+                break;
+            case  "-":
+                a = parseInt(a) - parseInt(b);
+                b="";
+                break;
+            case  "/":
+                a = parseInt(a) / parseInt(b);
+                b="";
+                break;
+            case "*":
+                a= parseInt(a) * parseInt(b);
+                b="";
+                break;
+            case "%":
+                a= parseInt(a) % parseInt(b);
+                b="";
+                break;
+        }
+        display.value=a;
+    }
+</script>
+<script src="js/js.js"></script>
+</body>
+</html>
